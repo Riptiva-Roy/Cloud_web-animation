@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Animation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Define global variables for the animation
+        var sunRadius = 100;
+        var leftX, rightX;
+
+        function setup() {
+            createCanvas(400, 200);
+            frameRate(30); // Set frame rate to 30 fps
+
+            // Set initial positions for the clouds
+            leftX = 150;
+            rightX = 200;
+
+            // Start the animation loop
+            animateClouds();
+        }
+
+        function draw() {
+            background(184, 236, 255);
+
+            fill(255, 170, 0);
+            ellipse(200, 100, sunRadius, sunRadius);
+        }
+
+        function animateClouds() {
+            // Draw the clouds
+            drawClouds();
+
+            // Move clouds
+            leftX -= 1; // Move 1 pixel to the left
+            rightX += 1; // Move 1 pixel to the right
+
+            // Request the next animation frame
+            requestAnimationFrame(animateClouds);
+        }
+
+        function drawClouds() {
+            fill(255, 255, 255);
+            // left cloud
+            ellipse(leftX, 150, 126, 97);
+            ellipse(leftX + 62, 150, 70, 60);
+            ellipse(leftX - 62, 150, 70, 60);
+            
+            // right cloud
+            ellipse(rightX, 100, 126, 97);
+            ellipse(rightX + 62, 100, 70, 60);
+            ellipse(rightX - 62, 100, 70, 60);
+        }
+    </script>
+</body>
+</html>
